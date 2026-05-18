@@ -1,0 +1,14 @@
+name: SI_SUPE
+description: Sfida Informatica SUPE
+location: Rizzi Polo Scientifico
+date: "Gennaio 2026"
+logo: logo.png
+tasks:
+  - "abbreviazione"
+  - "esercizi"
+  - "buffet"
+  - "micio"
+  - "rimessa"
+  - "autobus"
+  - "mense"
+token_mode: infinite

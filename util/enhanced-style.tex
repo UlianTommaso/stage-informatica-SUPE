@@ -1,0 +1,64 @@
+% Enhanced styling for problem statements
+% Subtle colors and improved visual hierarchy
+
+% Define color scheme (subtle blues and grays)
+\definecolor{titlecolor}{RGB}{0, 102, 204}        % Professional blue for titles
+\definecolor{sectioncolor}{RGB}{51, 51, 51}       % Dark gray for sections
+\definecolor{accentcolor}{RGB}{0, 153, 204}       % Lighter blue for accents
+\definecolor{codebackground}{RGB}{245, 245, 245}  % Light gray for code
+\definecolor{examplebackground}{RGB}{248, 249, 250} % Very light gray for examples
+
+% Enhanced title formatting
+\renewcommand{\maketitle}{%
+  \begin{center}
+    \colorbox{titlecolor!10}{%
+      \parbox{0.95\textwidth}{%
+        \centering
+        \vspace{0.3cm}
+        {\color{titlecolor}\LARGE\bfseries\@title}%
+        \vspace{0.3cm}
+      }%
+    }
+  \end{center}
+  \vspace{0.5cm}
+}
+
+% Enhanced section headers
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{sectioncolor}\Large\bfseries}
+  {\thesection}{1em}{}
+  [\color{accentcolor}\titlerule]
+
+\titleformat{\subsection}
+  {\color{sectioncolor}\large\bfseries}
+  {\thesubsection}{1em}{}
+
+% Enhanced itemize bullets
+\renewcommand{\labelitemi}{\color{accentcolor}$\blacktriangleright$}
+\renewcommand{\labelitemii}{\color{accentcolor}$\circ$}
+
+% Enhanced code blocks (if using minted)
+\setminted{
+  bgcolor=codebackground,
+  frame=lines,
+  framesep=2mm,
+  fontsize=\small,
+  breaklines=true
+}
+
+% Enhanced example environment
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{examplebox}{
+  colback=examplebackground,
+  colframe=accentcolor!50,
+  boxrule=1pt,
+  arc=2mm,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm,
+  breakable
+}
