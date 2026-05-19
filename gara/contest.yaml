@@ -1,0 +1,8 @@
+name: SI_SUPE
+description: Sfida Informatica SUPE
+location: Rizzi Polo Scientifico
+date: "Gennaio 2026"
+logo: logo.png
+tasks:
+  - "fattorino_hard"
+token_mode: infinite
