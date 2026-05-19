@@ -57,7 +57,7 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
 #ois_subtasks((
   subtask => [Casi d'esempio.],
   subtask => [Sono presenti bigliettini di esattamente 2 gusti in totale.],
-  subtask => [La pizza Marinara (`M`) non è stata ordinata da nessuno e $N <= 2 000$.],
+  subtask => [La pizza Marinara (`M`) non è stata richiesta da nessuno e $N <= 2 000$.],
   subtask => [Esiste una soluzione in cui l'ordine finale dei gusti è `D`, `C`, `W`, `S`, `M`.],
   subtask => [Nessuna limitazione aggiuntiva.]
 ),

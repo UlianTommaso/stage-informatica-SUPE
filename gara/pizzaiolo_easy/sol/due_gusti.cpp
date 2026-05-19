@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <set>
 #include <map>
 
 using namespace std;
@@ -11,52 +12,63 @@ int main() {
     if (!(cin >> N)) return 0;
     
     vector<char> v(N);
-    vector<char> tastes; // Per salvare i due gusti presenti nel testcase
-    
+    set<int> tastes;
     for (int i = 0; i < N; i++) {
         cin >> v[i];
         // Se il gusto non è ancora nel nostro vettore, lo aggiungiamo
-        if (find(tastes.begin(), tastes.end(), v[i]) == tastes.end()) {
-            tastes.push_back(v[i]);
-        }
+        tastes.insert(v[i]);
+    }
+
+    if (tastes.size() == 1) {
+        cout << 0 << endl;
+        return 0;
     }
 
     int res = 1e9;
 
+    vector<char> tungtung;
+    for (auto x : tastes) tungtung.push_back(x);
+
     // Ordiniamo per assicurarci di partire dalla primissima permutazione (es. C -> W)
-    sort(tastes.begin(), tastes.end());
-    
-    do {
+    sort(tungtung.begin(), tungtung.end());
+
+
+    for (int k = 0; k < 2; k ++) {
         // Regola di Tommaso: la 'M' deve stare alla fine. 
         // Se in questa permutazione la 'M' capita al primo posto, saltiamo il calcolo.
-        if (tastes.size() > 1 && tastes[0] == 'M') {
+        if (tungtung[0] == 'M') {
+            next_permutation(tungtung.begin(), tungtung.end());
             continue;
         }
 
-        map<char, int> ziopera;
-        for (int j = 0; j < tastes.size(); j++) {
-            ziopera[tastes[j]] = j;
+        map<char, int> sahur;
+        for (int j = 0; j < 2; j++) {
+            sahur[tungtung[j]] = j;
         }
 
-        // DP identica alla tua, ma grande quanto il numero di gusti (2)
-        vector<int> dp(tastes.size(), 0);
+        // Inizializziamo entrambe a 0 (ho corretto dp_1 = 0, che è lo standard per il LNDS)
+        int dp_0 = 0;
+        int dp_1 = 0; 
+
         for (char c : v) {
-            int x = ziopera[c];
-            int max_prev = 0;
-            for (int i = 0; i <= x; i++) {
-                max_prev = max(max_prev, dp[i]);
+            int x = sahur[c];
+            
+            if (x == 0) {
+                // Può estendere solo una sottosequenza fatta di soli 0
+                dp_0 = dp_0 + 1;
+            } else if (x == 1) {
+                // Può estendere la migliore sottosequenza trovata finora (che finisca con 0 o con 1)
+                dp_1 = max(dp_0, dp_1) + 1;
             }
-            dp[x] = max_prev + 1;
         }
 
-        int lnds = 0;
-        for (int i = 0; i < tastes.size(); i++) {
-            lnds = max(lnds, dp[i]);
-        }
+        // Il risultato finale è il massimo tra le due
+        int lnds = max(dp_0, dp_1);
 
         res = min(res, N - lnds);
 
-    } while (next_permutation(tastes.begin(), tastes.end()));
+        next_permutation(tungtung.begin(), tungtung.end());
+    }
 
     cout << res << '\n';
     return 0;
