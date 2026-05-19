@@ -1,0 +1,51 @@
+## La Cottura Perfetta da Apollonia
+
+La **Pizzeria Apollonia** non è un locale qualunque: è un vero e proprio tempio della pizza, famoso in tutta la città per il suo cornicione perfettamente alveolato e la cottura sempre impeccabile. Al centro di questo miracolo culinario c'è Alberto, il maestro fornaio. Ogni sera, durante il frenetico servizio, Alberto si destreggia tra $n$ forni ad altissime prestazioni, ognuno con la propria temperatura in continua variazione.
+
+Il segreto di Alberto per una pizza che cuocia alla perfezione, dorandosi al punto giusto senza mai bruciare, è il controllo assoluto del calore. Tuttavia, con centinaia di comande che arrivano in cucina, è umanamente impossibile tenere d'occhio i display di ogni singolo forno a mano. Per questo motivo, la pizzeria ha deciso di implementare un sistema informatico per monitorare in tempo reale i gradi dei forni e gestire i cambi di settaggio.
+
+Il tuo compito è aiutare Alberto scrivendo un programma che tenga traccia delle temperature. Quando Alberto ha la pala in mano con una Margherita appena stesa, ha bisogno di sapere in un istante quanti forni si trovano esattamente nell'intervallo di calore perfetto per infornare. Aiutalo a non far bruciare l'impasto!
+
+### Input
+
+La prima riga di input contiene due interi $n$ e $q$: il numero di forni gestiti da Alberto e il numero di operazioni che avvengono durante la serata. I forni sono numerati da $1, 2, \dots, n$.
+
+La riga successiva contiene $n$ interi $t_1, t_2, \dots, t_n$: la temperatura iniziale di ogni forno.
+
+Successivamente, ci sono $q$ righe che descrivono le operazioni. Ogni riga ha una delle seguenti forme:
+
+* **`! k x`**: Alberto abbassa o alza la fiamma, impostando la temperatura del forno $k$ a $x$ gradi.
+* **`? a b`**: Alberto deve infornare! Vuole sapere quanti forni hanno una temperatura attualmente compresa tra $a$ e $b$ (inclusi), ovvero l'intervallo di sicurezza in quel momento per cuocere senza bruciare.
+
+### Output
+
+Stampa la risposta per ogni interrogazione di tipo `?` su una nuova riga, così che Alberto possa leggerla velocemente sul monitor.
+
+### Vincoli
+
+* $1 \le n, q \le 2 \cdot 10^5$
+* $1 \le p_i \le 10^9$
+* $1 \le k \le n$
+* $1 \le x \le 10^9$
+* $1 \le a \le b \le 10^9$
+
+### Esempio
+
+**Input:**
+
+```text
+5 3
+3 7 2 2 5
+? 2 3
+! 3 6
+? 2 3
+
+```
+
+**Output:**
+
+```text
+3
+2
+
+```
