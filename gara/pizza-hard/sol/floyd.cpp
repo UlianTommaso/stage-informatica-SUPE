@@ -12,8 +12,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, M, K;
-    if (!(cin >> N >> M >> K)) return 0;
+    int N, M, K, T;
+    if (!(cin >> N >> M >> K >> T)) return 0;
 
     vector<vector<long long>> dist(N + 1, vector<long long>(N + 1, INF));
     for (int i = 1; i <= N; ++i) dist[i][i] = 0;
@@ -46,13 +46,13 @@ int main() {
         }
     }
 
-    for (int i = 1; i < N; ++i) {
+    for (int i = 1; i <= N; ++i) {
         bool can = false;
         for (int c = 0; c < K; ++c) {
             int h = chioschi[c].u;
             long long y = chioschi[c].y;
-            if (dist[i][h] != INF && dist[h][N] != INF && dist[i][N] != INF) {
-                if (dist[i][h] + dist[h][N] - y <= dist[i][N]) {
+            if (dist[i][h] != INF && dist[h][T] != INF && dist[i][T] != INF) {
+                if (dist[i][h] + dist[h][T] - y <= dist[i][T]) {
                     can = true;
                     break;
                 }

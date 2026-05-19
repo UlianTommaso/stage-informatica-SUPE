@@ -35,8 +35,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, M, K;
-    if (!(cin >> N >> M >> K)) return 0;
+    int N, M, K, T;
+    if (!(cin >> N >> M >> K >> T)) return 0;
 
     vector<vector<Edge>> adj(N + 1);
     for (int i = 0; i < M; ++i) {
@@ -59,14 +59,14 @@ int main() {
 
     // Heuristic 1: If there is a mega-kiosk, the answer is almost certainly 1 for everyone
     if (max_y >= 500000000LL) {
-        for (int i = 1; i < N; ++i) {
+        for (int i = 1; i <= N; ++i) {
             cout << 1 << "\n";
         }
         return 0;
     }
 
-    // Heuristic 2: Otherwise, run Dijkstra from N and run the DAG DP
-    vector<long long> distN = dijkstra(N, N, adj);
+    // Heuristic 2: Otherwise, run Dijkstra from T and run the DAG DP
+    vector<long long> distT = dijkstra(T, N, adj);
 
     vector<bool> can_use_locally(N + 1, false);
     for (int i = 1; i <= N; ++i) {
@@ -100,23 +100,23 @@ int main() {
     }
 
     // DP on shortest path DAG:
-    // Process nodes in ascending order of distN
+    // Process nodes in ascending order of distT
     vector<int> nodes(N);
     for (int i = 0; i < N; ++i) nodes[i] = i + 1;
     sort(nodes.begin(), nodes.end(), [&](int a, int b) {
-        return distN[a] < distN[b];
+        return distT[a] < distT[b];
     });
 
     vector<bool> can_use(N + 1, false);
     for (int u : nodes) {
-        if (distN[u] == INF) continue;
+        if (distT[u] == INF) continue;
         if (can_use_locally[u]) {
             can_use[u] = true;
             continue;
         }
         for (auto& edge : adj[u]) {
             int v = edge.to;
-            if (distN[u] == distN[v] + edge.weight) {
+            if (distT[u] == distT[v] + edge.weight) {
                 if (can_use[v]) {
                     can_use[u] = true;
                     break;
@@ -125,7 +125,7 @@ int main() {
         }
     }
 
-    for (int i = 1; i < N; ++i) {
+    for (int i = 1; i <= N; ++i) {
         if (can_use[i]) cout << 1 << "\n";
         else cout << 0 << "\n";
     }

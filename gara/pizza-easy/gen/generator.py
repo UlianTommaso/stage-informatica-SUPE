@@ -23,6 +23,10 @@ def generate():
             t = random.randint(1, 10000)
         road_weights.append(t)
         
+    P = [0] * (N + 1)
+    for i in range(1, N):
+        P[i + 1] = P[i] + road_weights[i - 1]
+        
     # Generate K chioschi
     chioschi = []
     
@@ -49,6 +53,7 @@ def generate():
     else:
         # Standard random placement
         chiosco_locations = random.sample(range(1, N + 1), K)
+            
         for loc in chiosco_locations:
             if TYPE == 1:
                 y = random.randint(1, 100)
@@ -56,14 +61,19 @@ def generate():
                 r = random.random()
                 if r < 0.2:
                     y = random.randint(1, 50)
-                elif r < 0.5:
-                    y = random.randint(1, 2000)
                 else:
-                    y = random.randint(1, 10**9)
+                    # Allow walking back a limited number of nodes on average
+                    max_nodes_back = random.randint(1, max(1, N // 5))
+                    y = random.randint(1, max_nodes_back * 10000 * 2)
             chioschi.append((loc, y))
             
+    if restrict_locations and N > 1:
+        T = random.randint(N // 2 + 1, N)
+    else:
+        T = random.randint(1, N)
+            
     # Print input
-    print(f"{N} {K}")
+    print(f"{N} {K} {T}")
     for t in road_weights:
         print(t)
     for loc, y in chioschi:

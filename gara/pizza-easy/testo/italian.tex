@@ -12,9 +12,9 @@
 
 È l'ora di pranzo allo stage per le Olimpiadi di Informatica e tutti gli studenti sono affamati! Tommaso aveva promesso di preparare la pizza per tutti, ma come al solito è troppo lento. Samuele, stufo di aspettare, decide di andare lui stesso in pizzeria a prendere le pizze.
 
-Via Gemona, la via dove si trova il Toppo, è composta da $N$ luoghi ($2 \le N \le 100\,000$), numerati da $1$ a $N$, disposti in fila lungo la strada. I luoghi sono collegati in sequenza: il luogo $1$ è collegato al luogo $2$, il luogo $2$ è collegato al luogo $3$, e così via fino al luogo $N$.
+Via Gemona, la via dove si trova il Toppo, è composta da $N$ luoghi, numerati da $1$ a $N$, disposti in fila lungo la strada. I luoghi sono collegati in sequenza: il luogo $1$ è collegato al luogo $2$, il luogo $2$ è collegato al luogo $3$, e così via fino al luogo $N$.
 
-Ci sono $N-1$ partecipanti allo stage, uno per ogni luogo da $1$ a $N-1$. Il Toppo (la sede dello stage dove tutti devono tornare) si trova al luogo $N$. Ogni partecipante deve tornare al Toppo partendo dal proprio luogo.
+Ci sono $N$ partecipanti allo stage, uno per ogni luogo da $1$ a $N$. Il Toppo (la sede dello stage dove tutti devono tornare) si trova al luogo $T$ ($1 \le T \le N$). Ogni partecipante deve tornare al Toppo partendo dal proprio luogo.
 
 Tra un luogo e il successivo c'è una certa distanza (in minuti di cammino). La distanza tra il luogo $i$ e il luogo $i+1$ è indicata con $t_i$ minuti.
 
@@ -24,22 +24,22 @@ Ogni partecipante è disposto a fermarsi al massimo in un chiosco lungo il suo p
 
 Nota importante: Un partecipante può decidere di tornare indietro per prendere un trancio di pizza e poi riprendere il cammino verso il Toppo, se questo ha senso dal punto di vista del tempo extra impiegato.
 
-Esempio: Se un partecipante si trova al luogo $5$ e il Toppo è al luogo $7$, il percorso più breve è $5 \to 6 \to 7$. Tuttavia, se c'è un chiosco al luogo $3$ con una pizza molto soddisfacente, il partecipante potrebbe decidere di fare: $5 \to 4 \to 3$ (prende la pizza) $\to 4 \to 5 \to 6 \to 7$.
 
 \InputFile
-La prima riga contiene due numeri interi $N$ e $K$ separati da spazi.
+La prima riga contiene tre numeri interi $N$, $K$ e $T$ separati da spazi.
 
-Ognuna delle successive $N-1$ righe contiene un intero $t_i$ che rappresenta i minuti necessari per andare dal luogo $i$ al luogo $i+1$ ($1 \le t_i \le 10^4$).
+Ognuna delle successive $N-1$ righe contiene un intero $t_i$ che rappresenta i minuti necessari per andare dal luogo $i$ al luogo $i+1$.
 
-Le successive $K$ righe descrivono ciascuna un chiosco di pizza con due interi: l'indice del suo luogo e il suo livello di soddisfazione (un intero positivo al massimo $10^9$). Più chioschi possono trovarsi nello stesso luogo.
+Le successive $K$ righe descrivono ciascuna un chiosco di pizza con due interi: l'indice del suo luogo e il suo livello di soddisfazione. Più chioschi possono trovarsi nello stesso luogo.
 
 \OutputFile
-L'output deve consistere di $N-1$ righe. La riga $i$ contiene il singolo intero $1$ se il partecipante nel luogo $i$ può fermarsi a mangiare una pizza lungo il percorso verso il Toppo, e $0$ altrimenti.
+L'output deve consistere di $N$ righe. La riga $i$ contiene il singolo intero $1$ se il partecipante nel luogo $i$ può fermarsi a mangiare una pizza lungo il percorso verso il Toppo, e $0$ altrimenti. (Anche il partecipante che si trova già al Toppo può decidere di muoversi per prendere una pizza e poi tornare, se il tempo extra lo permette).
 
 \Constraints
 \begin{itemize}
     \item $2 \le N \le 100\,000$.
     \item $1 \le K \le N$.
+    \item $1 \le T \le N$.
     \item $1 \le t_i \le 10^4$.
     \item $1 \le y_i \le 10^9$.
 \end{itemize}
@@ -93,4 +93,11 @@ Partecipante 4:
     \item Percorso diretto: $4 \to 5$ (tempo: $3$ minuti).
     \item Con pizza al luogo $4$: già lì! (tempo: $3$ minuti).
     \item Tempo extra: $0 \implies$ può fermarsi! \checkmark
+\end{itemize}
+
+Partecipante 5:
+\begin{itemize}
+    \item Percorso diretto: già lì! (tempo: $0$ minuti).
+    \item Con pizza al luogo $4$: $5 \to 4$ (prende la pizza) $\to 5$ (tempo: $3+3=6$ minuti).
+    \item Tempo extra: $6$, soddisfazione: $6 \implies$ può fermarsi! ($6 \le 6$) \checkmark
 \end{itemize}

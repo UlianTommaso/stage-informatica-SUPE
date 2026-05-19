@@ -35,8 +35,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, M, K;
-    if (!(cin >> N >> M >> K)) return 0;
+    int N, M, K, T;
+    if (!(cin >> N >> M >> K >> T)) return 0;
 
     vector<vector<Edge>> adj(N + 1);
     for (int i = 0; i < M; ++i) {
@@ -59,17 +59,17 @@ int main() {
 
     // Heuristic 1: If there is a mega-kiosk, the answer is almost certainly 1 for everyone
     if (max_y >= 500000000LL) {
-        for (int i = 1; i < N; ++i) {
+        for (int i = 1; i <= N; ++i) {
             cout << 1 << "\n";
         }
         return 0;
     }
 
-    // Heuristic 2: Otherwise, run Dijkstra from N and only check kiosks within distance of 2 edges
-    vector<long long> distN = dijkstra(N, N, adj);
+    // Heuristic 2: Otherwise, run Dijkstra from T and only check kiosks within distance of 2 edges
+    vector<long long> distT = dijkstra(T, N, adj);
 
-    for (int i = 1; i < N; ++i) {
-        if (distN[i] == INF) {
+    for (int i = 1; i <= N; ++i) {
+        if (distT[i] == INF) {
             cout << 0 << "\n";
             continue;
         }
@@ -86,7 +86,7 @@ int main() {
             for (auto& edge1 : adj[i]) {
                 int v = edge1.to;
                 if (hay[v] > 0) {
-                    if (edge1.weight + distN[v] - hay[v] <= distN[i]) {
+                    if (edge1.weight + distT[v] - hay[v] <= distT[i]) {
                         can = true;
                         break;
                     }
@@ -101,7 +101,7 @@ int main() {
                 for (auto& edge2 : adj[v]) {
                     int w = edge2.to;
                     if (hay[w] > 0) {
-                        if (edge1.weight + edge2.weight + distN[w] - hay[w] <= distN[i]) {
+                        if (edge1.weight + edge2.weight + distT[w] - hay[w] <= distT[i]) {
                             can = true;
                             break;
                         }

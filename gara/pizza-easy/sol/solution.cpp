@@ -45,6 +45,7 @@ inline void writeChar(char c) {
 int main() {
     long long N = readLong();
     long long K = readLong();
+    long long T = readLong();
     if (N == -1) return 0;
 
     vector<long long> t(N); // t[i] is distance between i and i+1
@@ -65,8 +66,13 @@ int main() {
         P[i] = P[i - 1] + t[i - 1];
     }
 
-    // val[i] = P[i] + y_i / 2 if chiosco at i
-    // pref_max[i] = max_{j < i} val[j]
+    vector<int> cnt(N + 1, 0);
+    for (int i = 1; i <= N; ++i) {
+        cnt[i] = cnt[i - 1] + (max_y[i] != -1 ? 1 : 0);
+    }
+
+    // val1[i] = P[i] + max_y[i] / 2
+    // pref_max[i] = max_{j < i} val1[j]
     vector<long long> pref_max(N + 1, -INF);
     long long current_max = -INF;
     for (int i = 1; i <= N; ++i) {
@@ -76,19 +82,32 @@ int main() {
         }
     }
 
-    // suff_has[i] is true if there is a chiosco at some h >= i
-    vector<bool> suff_has(N + 1, false);
-    bool has_chiosco = false;
+    // val2[i] = P[i] - max_y[i] / 2
+    // suff_min[i] = min_{j > i} val2[j]
+    vector<long long> suff_min(N + 1, INF);
+    long long current_min = INF;
     for (int i = N; i >= 1; --i) {
+        suff_min[i] = current_min;
         if (max_y[i] != -1) {
-            has_chiosco = true;
+            current_min = min(current_min, P[i] - max_y[i] / 2);
         }
-        suff_has[i] = has_chiosco;
     }
 
-    // Output for 1..N-1
-    for (int i = 1; i < N; ++i) {
-        if (suff_has[i] || P[i] <= pref_max[i]) {
+    // Output for 1..N
+    for (int i = 1; i <= N; ++i) {
+        int l = min(i, (int)T);
+        int r = max(i, (int)T);
+        
+        bool can = false;
+        if (cnt[r] - cnt[l - 1] > 0) {
+            can = true;
+        } else if (pref_max[l] >= P[l]) {
+            can = true;
+        } else if (suff_min[r] <= P[r]) {
+            can = true;
+        }
+        
+        if (can) {
             writeChar('1');
         } else {
             writeChar('0');

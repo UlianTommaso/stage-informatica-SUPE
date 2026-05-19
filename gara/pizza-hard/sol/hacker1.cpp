@@ -35,8 +35,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, M, K;
-    if (!(cin >> N >> M >> K)) return 0;
+    int N, M, K, T;
+    if (!(cin >> N >> M >> K >> T)) return 0;
 
     vector<vector<Edge>> adj(N + 1);
     for (int i = 0; i < M; ++i) {
@@ -60,7 +60,7 @@ int main() {
 
     // Heuristic 1: If there is a mega-kiosk, the answer is almost certainly 1 for everyone
     if (max_y >= 500000000LL) {
-        for (int i = 1; i < N; ++i) {
+        for (int i = 1; i <= N; ++i) {
             cout << 1 << "\n";
         }
         return 0;
@@ -71,7 +71,7 @@ int main() {
         return a.y > b.y;
     });
 
-    vector<long long> distN = dijkstra(N, N, adj);
+    vector<long long> distT = dijkstra(T, N, adj);
     vector<long long> distBeer(N + 1, INF);
 
     int num_to_check = min(K, 100);
@@ -80,14 +80,14 @@ int main() {
         long long y = chioschi[c].y;
         vector<long long> distH = dijkstra(h, N, adj);
         for (int i = 1; i <= N; ++i) {
-            if (distH[i] != INF && distN[h] != INF) {
-                distBeer[i] = min(distBeer[i], distH[i] + distN[h] - y);
+            if (distH[i] != INF && distT[h] != INF) {
+                distBeer[i] = min(distBeer[i], distH[i] + distT[h] - y);
             }
         }
     }
 
-    for (int i = 1; i < N; ++i) {
-        if (distBeer[i] <= distN[i]) {
+    for (int i = 1; i <= N; ++i) {
+        if (distBeer[i] <= distT[i]) {
             cout << 1 << "\n";
         } else {
             cout << 0 << "\n";

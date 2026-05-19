@@ -26,8 +26,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, M, K;
-    if (!(cin >> N >> M >> K)) return 0;
+    int N, M, K, T;
+    if (!(cin >> N >> M >> K >> T)) return 0;
 
     vector<vector<Edge>> adj(N + 1);
     for (int i = 0; i < M; ++i) {
@@ -54,26 +54,26 @@ int main() {
 
     // Heuristic 1: If there is a mega-kiosk, the answer is almost certainly 1 for everyone
     if (max_y >= 500000000LL) {
-        for (int i = 1; i < N; ++i) {
+        for (int i = 1; i <= N; ++i) {
             cout << 1 << "\n";
         }
         return 0;
     }
 
-    // Dijkstra from N
-    vector<long long> distN(N + 1, INF);
+    // Dijkstra from T
+    vector<long long> distT(N + 1, INF);
     {
         priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
-        distN[N] = 0;
-        pq.push({0, N});
+        distT[T] = 0;
+        pq.push({0, T});
         while (!pq.empty()) {
             auto [d, u] = pq.top();
             pq.pop();
-            if (d > distN[u]) continue;
+            if (d > distT[u]) continue;
             for (auto& edge : adj[u]) {
-                if (distN[edge.to] > distN[u] + edge.weight) {
-                    distN[edge.to] = distN[u] + edge.weight;
-                    pq.push({distN[edge.to], edge.to});
+                if (distT[edge.to] > distT[u] + edge.weight) {
+                    distT[edge.to] = distT[u] + edge.weight;
+                    pq.push({distT[edge.to], edge.to});
                 }
             }
         }
@@ -111,8 +111,8 @@ int main() {
         }
     }
 
-    for (int i = 1; i < N; ++i) {
-        if (distN[i] == INF) {
+    for (int i = 1; i <= N; ++i) {
+        if (distT[i] == INF) {
             cout << 0 << "\n";
             continue;
         }
@@ -121,7 +121,7 @@ int main() {
         for (auto& p : best_kiosks[i]) {
             long long d_to_k = p.first;
             int k = p.second;
-            if (d_to_k + distN[k] - hay[k] <= distN[i]) {
+            if (d_to_k + distT[k] - hay[k] <= distT[i]) {
                 can = true;
                 break;
             }

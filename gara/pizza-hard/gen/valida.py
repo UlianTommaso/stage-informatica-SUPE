@@ -8,13 +8,14 @@ def valida(file_in, subtask_id):
     assert len(lines) >= 1, "Input file is empty"
     
     parts = lines[0].split()
-    assert len(parts) == 3, f"First line must contain 3 integers (N M K), got {len(parts)}"
-    N, M, K = map(int, parts)
+    assert len(parts) == 4, f"First line must contain 4 integers (N M K T), got {len(parts)}"
+    N, M, K, T = map(int, parts)
     
     # Check general constraints first
     assert 2 <= N <= 50000, f"N out of bounds: {N}"
     assert 1 <= M <= 100000, f"M out of bounds: {M}"
     assert 1 <= K <= N, f"K out of bounds: {K}"
+    assert 1 <= T <= N, f"T out of bounds: {T}"
     
     # Subtask constraints checking (subtask_id is 1-based index including samples)
     # 1: samples

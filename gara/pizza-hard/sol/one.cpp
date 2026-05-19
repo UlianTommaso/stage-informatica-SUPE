@@ -9,8 +9,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, M, K;
-    if (!(cin >> N >> M >> K)) return 0;
+    int N, M, K, T;
+    if (!(cin >> N >> M >> K >> T)) return 0;
 
     for (int i = 0; i < M; ++i) {
         int u, v;
@@ -24,7 +24,7 @@ int main() {
         if (!(cin >> u >> y)) return 0;
     }
 
-    for (int i = 1; i < N; ++i) {
+    for (int i = 1; i <= N; ++i) {
         cout << 1 << "\n";
     }
 

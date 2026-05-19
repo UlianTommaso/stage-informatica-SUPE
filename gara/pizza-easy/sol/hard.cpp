@@ -23,8 +23,9 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-	int n, k;
-	if (!(cin >> n >> k)) return 0;
+	int n, k, T;
+	if (!(cin >> n >> k >> T)) return 0;
+    T--;
 	vector<vector<pair<int, long long>>> adj(n);
 	for (int i = 0; i < n-1; i++) {
         long long w;
@@ -46,12 +47,12 @@ int main() {
 
 	vector<array<long long, 2>> dist(n, {INF, INF});
 
-	dist[n - 1][0] = 0;  // Distance to barn without hay
-	pq.push({0, n - 1, false});
+	dist[T][0] = 0;  // Distance to barn without hay
+	pq.push({0, T, false});
 
-	if (hay[n - 1] > 0) {
-		dist[n - 1][1] = 0;
-		pq.push({-hay[n - 1], n - 1, true});
+	if (hay[T] > 0) {
+		dist[T][1] = 0;
+		pq.push({-hay[T], T, true});
 	}
 
 	while (!pq.empty()) {
@@ -86,7 +87,7 @@ int main() {
 		}
 	}
 
-	for (int i = 0; i < n - 1; i++) {
+	for (int i = 0; i < n; i++) {
 		if (dist[i][1] <= dist[i][0]) {
 			cout << 1 << '\n';
 		} else {

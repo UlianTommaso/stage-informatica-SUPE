@@ -10,8 +10,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int N, K;
-    if (!(cin >> N >> K)) return 0;
+    int N, K, T;
+    if (!(cin >> N >> K >> T)) return 0;
 
     vector<long long> t(N);
     for (int i = 1; i <= N - 1; ++i) {
@@ -27,7 +27,7 @@ int main() {
         cin >> chioschi[i].u >> chioschi[i].y;
     }
 
-    for (int i = 0; i < N-1; i++) {
+    for (int i = 0; i < N; i++) {
         cout << 1 << '\n';
     }
 
