@@ -1,0 +1,70 @@
+\usepackage{xcolor}
+\usepackage{afterpage}
+\usepackage{pifont,mdframed}
+\usepackage[bottom]{footmisc}
+
+\newcommand{\inputfile}{\texttt{stdin}}
+\newcommand{\outputfile}{\texttt{stdout}}
+\makeatletter
+\renewcommand{\this@inputfilename}{\texttt{stdin}}
+\renewcommand{\this@outputfilename}{\texttt{stdout}}
+\makeatother
+
+È l'ora di pranzo allo stage per le Olimpiadi di Informatica e tutti gli studenti sono affamati! Tommaso aveva promesso di preparare la pizza per tutti, ma come al solito è troppo lento. Samuele, stufo di aspettare, decide di andare lui stesso in pizzeria a prendere le pizze.
+
+La città è composta da $N$ incroci ($2 \le N \le 50\,000$), numerati da $1$ a $N$. Samuele si trova attualmente in pizzeria (incrocio $1$) e deve tornare al Toppo (incrocio $N$) il più velocemente possibile, prima che le pizze si raffreddino!
+
+Gli incroci sono collegati da $M$ strade bidirezionali ($1 \le M \le 100\,000$). La $i$-esima strada collega gli incroci $a_i$ e $b_i$ e richiede $t_i$ minuti per essere percorsa. È sempre possibile raggiungere il Toppo partendo dalla pizzeria attraverso una sequenza di strade.
+
+Lungo il tragitto, Samuele nota che in $K$ incroci ($1 \le K \le N$) ci sono dei chioschi che vendono birra artigianale fresca. Essendo assetato dopo una mattinata intensa di algoritmi, Samuele considera l'idea di fermarsi a prendere una birra. Il chiosco nell'incrocio $i$ vende una birra con un livello di soddisfazione $y_i$ (misurato in "quanto vale la pena fermarsi").
+
+Samuele è disposto a fermarsi al massimo in un chiosco lungo il suo percorso verso il Toppo, ma solo se il tempo extra aggiunto al suo percorso è al massimo uguale al livello di soddisfazione della birra che prenderebbe. In altre parole, se fermarsi a bere una birra gli fa perdere $t$ minuti in più rispetto al percorso più veloce, lo farà solo se il livello di soddisfazione è almeno $t$.
+
+\begin{warning}
+Samuele può passare attraverso incroci con chioschi senza fermarsi (semplicemente ignorando la birra). Si ferma "ufficialmente" al massimo in un chiosco.
+\end{warning}
+
+Adesso, gli altri $N-1$ partecipanti allo stage (uno per ogni incrocio diverso dal Toppo) vogliono sapere se anche loro potrebbero fare lo stesso percorso di Samuele: partire dal proprio incrocio, eventualmente fermarsi a prendere una birra, e arrivare al Toppo in tempo ragionevole.
+
+\InputFile
+La prima riga contiene tre numeri interi $N$, $M$ e $K$ separati da spazi.
+
+Ognuna delle successive $M$ righe contiene tre interi $a_i$, $b_i$ e $t_i$, che descrivono una strada tra gli incroci $a_i$ e $b_i$ che richiede $t_i$ minuti per essere percorsa ($a_i$ e $b_i$ sono diversi tra loro, e $t_i$ è un intero positivo al massimo $10^4$).
+
+Le successive $K$ righe descrivono ciascuna un chiosco di birra con due interi: l'indice del suo incrocio e il suo livello di soddisfazione (un intero positivo al massimo $10^9$). Più chioschi possono trovarsi nello stesso incrocio.
+
+\OutputFile
+L'output deve consistere di $N-1$ righe. La riga $i$ contiene il singolo intero $1$ se la persona nell'incrocio $i$ può fermarsi a bere una birra lungo il percorso verso il Toppo, e $0$ altrimenti.
+
+\Constraints
+\begin{itemize}
+    \item $2 \le N \le 50\,000$.
+    \item $1 \le M \le 100\,000$.
+    \item $1 \le K \le N$.
+    \item $1 \le t_i \le 10^4$.
+    \item $1 \le y_i \le 10^9$.
+    \item Il grafo delle strade è connesso.
+\end{itemize}
+
+\Scoring
+\begin{itemize}
+    \item \subtask Casi d'esempio.
+    \item \subtask $N \le 10$, $M \le 20$, $K \le 10$.
+    \item \subtask $N \le 1\,000$, $M \le 2\,000$, $K \le 1\,000$.
+    \item \subtask $K = 1$.
+    \item \subtask $t_i = 1$ per ogni strada.
+    \item \subtask Nessuna limitazione aggiuntiva.
+\end{itemize}
+
+\Examples
+\begin{example}
+    \exmpfile{input0.txt}{output0.txt}
+\end{example}
+
+\Explanations
+Nel \textbf{caso d'esempio}:
+\begin{itemize}
+    \item La persona nell'incrocio 3 dovrebbe fermarsi per una birra: il suo percorso aumenterebbe solo di 6 minuti (da 2 a 8), e questo aumento è al massimo uguale al livello di soddisfazione 7 della birra.
+    \item La persona nell'incrocio 2 dovrebbe ovviamente prendere la birra nell'incrocio 2, dato che questo non causa alcun cambiamento nel suo percorso ottimale.
+    \item La persona nell'incrocio 1 è un caso interessante: potrebbe sembrare che il suo percorso ottimale (lunghezza 10) aumenterebbe troppo per giustificare una sosta per la birra. Tuttavia, ha effettivamente un percorso che rende vantaggiosa la sosta: andare all'incrocio 4, poi all'incrocio 2 (prendendo la birra), poi tornare all'incrocio 4 e infine raggiungere il Toppo. Questo percorso richiede 10 + 7 = 17 minuti totali di "tempo percepito" (10 minuti reali + 7 di soddisfazione dalla birra), che è accettabile!
+\end{itemize}

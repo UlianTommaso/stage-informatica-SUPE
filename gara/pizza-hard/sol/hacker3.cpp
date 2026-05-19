@@ -1,0 +1,134 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+const long long INF = 1e18;
+
+struct Edge {
+    int to;
+    long long weight;
+};
+
+vector<long long> dijkstra(int start, int N, const vector<vector<Edge>>& adj) {
+    vector<long long> dist(N + 1, INF);
+    priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
+    dist[start] = 0;
+    pq.push({0, start});
+    while (!pq.empty()) {
+        auto [d, u] = pq.top();
+        pq.pop();
+        if (d > dist[u]) continue;
+        for (auto& edge : adj[u]) {
+            if (dist[edge.to] > dist[u] + edge.weight) {
+                dist[edge.to] = dist[u] + edge.weight;
+                pq.push({dist[edge.to], edge.to});
+            }
+        }
+    }
+    return dist;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int N, M, K;
+    if (!(cin >> N >> M >> K)) return 0;
+
+    vector<vector<Edge>> adj(N + 1);
+    for (int i = 0; i < M; ++i) {
+        int u, v;
+        long long w;
+        cin >> u >> v >> w;
+        adj[u].push_back({v, w});
+        adj[v].push_back({u, w});
+    }
+
+    vector<long long> hay(N + 1, 0);
+    long long max_y = 0;
+    for (int i = 0; i < K; ++i) {
+        int u;
+        long long y;
+        cin >> u >> y;
+        hay[u] = max(hay[u], y);
+        max_y = max(max_y, y);
+    }
+
+    // Heuristic 1: If there is a mega-kiosk, the answer is almost certainly 1 for everyone
+    if (max_y >= 500000000LL) {
+        for (int i = 1; i < N; ++i) {
+            cout << 1 << "\n";
+        }
+        return 0;
+    }
+
+    // Heuristic 2: Otherwise, run Dijkstra from N and run the DAG DP
+    vector<long long> distN = dijkstra(N, N, adj);
+
+    vector<bool> can_use_locally(N + 1, false);
+    for (int i = 1; i <= N; ++i) {
+        // 0 edges
+        if (hay[i] > 0) {
+            can_use_locally[i] = true;
+            continue;
+        }
+        // 1 edge
+        for (auto& edge1 : adj[i]) {
+            int v = edge1.to;
+            if (hay[v] > 0 && 2 * edge1.weight <= hay[v]) {
+                can_use_locally[i] = true;
+                break;
+            }
+        }
+        if (can_use_locally[i]) continue;
+
+        // 2 edges
+        for (auto& edge1 : adj[i]) {
+            int v = edge1.to;
+            for (auto& edge2 : adj[v]) {
+                int w = edge2.to;
+                if (hay[w] > 0 && 2 * (edge1.weight + edge2.weight) <= hay[w]) {
+                    can_use_locally[i] = true;
+                    break;
+                }
+            }
+            if (can_use_locally[i]) break;
+        }
+    }
+
+    // DP on shortest path DAG:
+    // Process nodes in ascending order of distN
+    vector<int> nodes(N);
+    for (int i = 0; i < N; ++i) nodes[i] = i + 1;
+    sort(nodes.begin(), nodes.end(), [&](int a, int b) {
+        return distN[a] < distN[b];
+    });
+
+    vector<bool> can_use(N + 1, false);
+    for (int u : nodes) {
+        if (distN[u] == INF) continue;
+        if (can_use_locally[u]) {
+            can_use[u] = true;
+            continue;
+        }
+        for (auto& edge : adj[u]) {
+            int v = edge.to;
+            if (distN[u] == distN[v] + edge.weight) {
+                if (can_use[v]) {
+                    can_use[u] = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    for (int i = 1; i < N; ++i) {
+        if (can_use[i]) cout << 1 << "\n";
+        else cout << 0 << "\n";
+    }
+
+    return 0;
+}
