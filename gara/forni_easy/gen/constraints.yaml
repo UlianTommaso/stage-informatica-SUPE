@@ -1,0 +1,8 @@
+MAXN: 200000
+
+subtask:
+  - {}
+  - {} # Samples
+  - {} # N, Q <= 1000
+  - {} # t_i, x <= 10^6
+  - {} # Full constraints

@@ -1,0 +1,1 @@
+../testo/forni_easy.output0.txt
