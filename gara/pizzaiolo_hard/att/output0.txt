@@ -1,1 +1,1 @@
-../testo/output0.txt
+../testo/pizzaiolo_hard.output0.txt

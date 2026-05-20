@@ -20,7 +20,7 @@ score_type_parameters:
 n_input: 33
 score_precision: 0
 primary_language: it
-time_limit: 1.0
+time_limit: 2.0
 memory_limit: 256
 output_only: false
 infile: ''

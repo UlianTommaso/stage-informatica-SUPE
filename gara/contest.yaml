@@ -1,8 +1,13 @@
-name: SI_SUPE
-description: Sfida Informatica SUPE
-location: Rizzi Polo Scientifico
-date: "Gennaio 2026"
+name: Stage_SUPE
+description: Gara Stage di Informatica SUPE
+location: Palazzo di Toppo Wassermann, Udine
+date: "Maggio 2026"
 logo: logo.png
 tasks:
+  - "fattorino_easy"
   - "fattorino_hard"
+  - "forni_easy"
+  - "forni_hard"
+  - "pizzaiolo_easy"
+  - "pizzaiolo_hard"
 token_mode: infinite

@@ -34,7 +34,7 @@ La prima riga contiene gli interi $N$, $M$, $K$, $T$, rispettivamente il numero 
 
 La $1+i$-esima riga $(0<=i<M)$ contiene tre interi $a_i$, $b_i$ e $t_i$, che descrivono la presenza di una strada tra gli incroci $a_i$ e $b_i$, con tempo di percorrimento di $t_i$ minuti.
 
-La $1+M+i$-esima riga $(0<=i<K)$ righa contiene gli interi $C_i$ e $S_i$, rispettivamente l'incrocio dell'$i$-esimo chiosco e il suo livello di soddisfazione
+La $1+M+i$-esima riga $(0<=i<K)$ riga contiene gli interi $C_i$ e $S_i$, rispettivamente l'incrocio dell'$i$-esimo chiosco e il suo livello di soddisfazione.
 
 #note[
 Tra gli allegati a questo task troverai un template `pizzaiolo_hard.*` con un esempio di implementazione.

@@ -11,7 +11,7 @@
 #statement[
 
 
-La **Pizzeria Apollonia** non è un locale qualunque: è un vero e proprio tempio della pizza, famoso in tutta la città per il suo cornicione perfettamente alveolato e la cottura sempre impeccabile. Al centro di questo miracolo culinario c'è Alessandro, il maestro fornaio. Ogni sera, durante il frenetico servizio, Alessandro si destreggia tra $n$ forni ad altissime prestazioni, ognuno con la propria temperatura in continua variazione.
+La **Pizzeria Apollonia** non è un locale qualunque: è un vero e proprio tempio della pizza, famoso in tutta la città per il suo cornicione perfettamente alveolato e la cottura sempre impeccabile. Al centro di questo miracolo culinario c'è Alessandro, il maestro fornaio. Ogni sera, durante il frenetico servizio, Alessandro si destreggia tra $N$ forni ad altissime prestazioni, ognuno con la propria temperatura in continua variazione.
 
 #figure(
   image("carte2.png", width: 60%),
@@ -26,7 +26,7 @@ Il tuo compito è aiutare Alessandro scrivendo un programma che tenga traccia de
 
 La prima riga di input contiene due interi $N$ e $Q$: il numero di forni gestiti da Alessandro e il numero di operazioni che avvengono durante la serata. I forni sono numerati da $1, 2, dots, N$.
 
-La riga successiva contiene $n$ interi $t_1, t_2, dots, t_N$: la temperatura iniziale di ogni forno.
+La riga successiva contiene $N$ interi $t_1, t_2, dots, t_N$: la temperatura iniziale di ogni forno.
 
 
 Successivamente, ci sono $Q$ righe che descrivono le operazioni. Ogni riga ha una delle seguenti forme:
@@ -39,7 +39,7 @@ Tra gli allegati a questo task troverai un template `forni_hard.*` con un esempi
 ]
 
 #outputfile
-Stampa un singolo intero, il minimo numero di mosse che deve fare Tommaso per riordinare i bigliettini. 
+Per ogni query di tipo `? a b`, stampa su una nuova riga il numero di forni la cui temperatura è attualmente compresa tra $a$ e $b$ inclusi.
 
 
 #constraints
@@ -67,5 +67,8 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
 
 #explanation
 
-Nel *primo caso d'esempio*, blabla.
+Nel *primo caso d'esempio* ci sono $N=5$ forni con temperature iniziali $[3, 7, 2, 2, 5]$.
+- Alla query `? 2 3`, ci sono $3$ forni (il primo con $T=3$, il terzo con $T=2$ e il quarto con $T=2$) con temperatura compresa tra $2$ e $3$. Viene quindi stampato `3`.
+- L'operazione `! 3 6` modifica la temperatura del terzo forno portandola a $6$. Le temperature diventano $[3, 7, 6, 2, 5]$.
+- Alla query `? 2 3`, ora ci sono $2$ forni (il primo con $T=3$ e il quarto con $T=2$) con temperatura compresa tra $2$ e $3$. Viene quindi stampato `2`.
 ]

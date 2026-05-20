@@ -49,9 +49,10 @@ int main() {
     }
 
     int res = 1e9;
-    vector<char> permutations = {'P', 'S', 'U', 'W'};
+    vector<char> permutations = {'D', 'C', 'W', 'S'};
+    sort(all(permutations));
     
-    while(next_permutation(all(permutations))){
+    do {
 
 
         vector<pair<pair<int, int>, int>> v_copy(N);
@@ -60,7 +61,7 @@ int main() {
         for (int j = 0; j < 4; j ++) {
             ziopera[permutations[j]] = j;
         }
-        ziopera['E'] = 4;
+        ziopera['M'] = 4;
 
         for (int i = 0; i < N; i++) v_copy[i] = {{ziopera[v[i].first], v[i].second}, i};
         sort(all(v_copy));
@@ -71,7 +72,7 @@ int main() {
         }
         int l = lis(new_pos);
         res = min(res, (int)N - l);
-    }
+    } while (next_permutation(all(permutations)));
 
     cout << res << '\n';
 

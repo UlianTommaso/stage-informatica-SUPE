@@ -14,17 +14,17 @@ int main() {
         cin >> v[i];
     }
 
-    bool is_c = false;
+    bool is_m = false;
     for (int i = 0; i < N; i ++) {
-        if (v[i][0] == 'E') {
-            is_c = true;
+        if (v[i][0] == 'M') {
+            is_m = true;
         }   
     }
 
-    if (v.back()[0] == 'E' || !is_c) {
+    if (v.back()[0] == 'M' || !is_m) {
         cout << 0 << '\n';
     }
-    if (is_c && v.back()[0] != 'E') {
+    if (is_m && v.back()[0] != 'M') {
         cout << 1 << '\n';
     }
 }

@@ -36,7 +36,7 @@ In una singola mossa, Tommaso può prendere un bigliettino dalla fila e reinseri
 Aiuta Tommaso a calcolare il minimo numero di mosse necessarie.
 
 #inputfile
-La prima riga contiene un intero $N$, il numero di carte pescate da Lorenzo.
+La prima riga contiene un intero $N$, il numero di bigliettini raccolti da Tommaso.
 
 La seconda riga contiene $N$ valori separati da uno spazio, che rappresentano i bigliettini.
 Ogni bigliettino è una stringa composta da un carattere tra {`D`, `C`, `W`, `S`, `M`},
@@ -64,7 +64,7 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
   subtask => [Casi d'esempio.],
   subtask => [Per ogni gusto c'è un solo bigliettino.],
   subtask => [Per ogni gusto ci sono al massimo due bigliettini e i gusti sono ordinati tra loro secondo l'ordine `D` < `C` < `W` < `S` < `M`.],
-  subtask => [Tutte i bigliettini sono del gusto `C`, $N <= 2 000$.],
+  subtask => [Tutti i bigliettini sono del gusto `C`, $N <= 2 000$.],
   subtask => [$N <= 2 000$.],
   subtask => [Nessuna limitazione aggiuntiva.]
 ),

@@ -116,25 +116,27 @@ if __name__ == "__main__":
         cards = [f"{s}{random.randint(1, n)}" for s in chosen_suits]
         
     elif TYPE == 2:
-        # Max 2 per letter.
+        # Max 2 per letter, suits sorted D < C < W < S < M.
         # N <= 10.
-        # Distribute count.
+        suit_order = {s: i for i, s in enumerate(suits)}
         counts = {s: 0 for s in suits}
-        cards = []
+        suit_used = {s: set() for s in suits}
+        cards_data = []  # list of (suit, value)
         for _ in range(n):
             # Pick a suit with count < 2
             avail = [s for s in suits if counts[s] < 2]
-            if not avail: break # Should not happen if N<=10
+            if not avail: break
             s = random.choice(avail)
             counts[s] += 1
-            # Pick unique value ?
-            # Let's track used (s, v).
-            v = random.randint(1, n)
-            while f"{s}{v}" in cards: v = random.randint(1, n+100) # Safe hack
-            cards.append(f"{s}{v}")
-        
-        # Sort cards by suit: D < C < W < S < M
-        # Suits are already defined in the desired order in `suits` list: ['D', 'C', 'W', 'S', 'M']
+            # Pick a unique value in 1..n for this suit
+            avail_vals = [v for v in range(1, n + 1) if v not in suit_used[s]]
+            v = random.choice(avail_vals)
+            suit_used[s].add(v)
+            cards_data.append((s, v))
+
+        # Sort by suit order D<C<W<S<M (keep random within-suit value order)
+        cards_data.sort(key=lambda x: suit_order[x[0]])
+        cards = [f"{s}{v}" for s, v in cards_data]
     else:
         # Full random
         # We need N cards. Valid values 1..N (since DeckN=N).
