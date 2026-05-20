@@ -18,16 +18,17 @@ La città è composta da $N$ incroci, numerati da $0$ a $N-1$. Gli incroci sono 
 
 Samuele intanto si è perso a Udine e, dato che si è fatto tardi, decide di tornare al Toppo, che si trova all'incrocio $T$. 
 
+#figure(
+  image("fattorino.png", width: 50%),
+  caption: "Samuele che corre verso il Toppo."
+)
+
 In $K$ incroci $C_0, dots, C_(K-1)$ di Udine ci sono dei chioschi che vendono tranci di pizza. Il chiosco nell'incrocio $C_i$ vende un trancio di pizza con un livello di soddisfazione $S_i$ (misurato in "quanto vale la pena fermarsi").
 
 Samuele è disposto a fermarsi al massimo in un chiosco lungo il suo percorso verso il Toppo, ma solo se il tempo extra aggiunto al suo percorso è al massimo uguale al livello di soddisfazione della pizza che prenderebbe. In altre parole, se fermarsi a prendere una pizza gli fa perdere $t$ minuti in più rispetto al percorso più veloce, lo farà solo se il livello di soddisfazione è almeno $t$.
 
 Dato che non sappiamo dove si trova Samuele, determina per ogni possibile incrocio iniziale se Samuele si fermerà a prendere la pizza oppure no.
 
-// #figure(
-//   image("carte2.png", width: 60%),
-//   caption: "Le carte di Toppabi con i gettoni indizio."
-// )
 
 #inputfile
 La prima riga contiene gli interi $N$, $M$, $K$, $T$, rispettivamente il numero di incroci, il numero di strade, il numero di chioschi e l'incrocio del Toppo.
@@ -69,7 +70,7 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
   subtask => [$t_i = 1$ per ogni $0 <= i < M$.],
   subtask => [Nessuna limitazione aggiuntiva.]
 ),
-(0, 2, 2, 3, 4, 5))
+(0, 3, 3, 3, 4, 5))
 
 #examples(2)
 

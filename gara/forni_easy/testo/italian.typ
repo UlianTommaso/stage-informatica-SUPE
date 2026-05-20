@@ -53,7 +53,7 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
   subtask => [Tutte le temperature iniziali e quelle inserite nelle query sono al massimo $10^6$ (ovvero $t_i, x <= 10^6$).],
   subtask => [Nessuna limitazione aggiuntiva.]
 ),
-(0, 1, 2, 3))
+(0, 1, 2, 2))
 
 #examples(1)
 

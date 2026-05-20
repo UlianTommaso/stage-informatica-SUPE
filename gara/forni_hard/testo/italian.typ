@@ -61,7 +61,7 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
   subtask => [La risposta ad ogni query `? a b` non è mai maggiore di $100$.],
   subtask => [Nessuna limitazione aggiuntiva.]
 ),
-(0, 1, 2, 3))
+(0, 2, 3, 4))
 
 #examples(1)
 

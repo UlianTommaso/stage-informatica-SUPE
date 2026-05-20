@@ -2,7 +2,7 @@
 # tm-allow-delete
 # Removing or changing the line above will prevent task-maker from touching this file again.
 name: pizzaiolo_easy
-title: Gattino al Toppo
+title: Ordina le ordinazioni (Versione Easy)
 score_type: GroupMin
 score_type_parameters:
 - - 0.0

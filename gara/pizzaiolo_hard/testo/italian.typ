@@ -18,8 +18,8 @@ Raccoglie le ordinazioni e scrive ogni singola richiesta su un bigliettino.
 Ogni bigliettino contiene la lettera iniziale del gusto di pizza e un intero, il numero del ragazzo che l'ha ordinata. 
 
 #figure(
-  image("carte2.png", width: 60%),
-  caption: "Le carte di Toppabi con i gettoni indizio."
+  image("pizzaiolo.png", width: 60%),
+  caption: "Tommaso che cade dalle scale."
 )
 
 Ogni ragazzo può ordinare quante pizze desidera, ma al massimo una per ogni gusto. 
@@ -68,7 +68,7 @@ ad un subtask, è necessario risolvere correttamente tutti i test che lo compong
   subtask => [$N <= 2 000$.],
   subtask => [Nessuna limitazione aggiuntiva.]
 ),
-(0, 1, 2, 2, 2, 3))
+(0, 2, 2, 3, 4, 5))
 
 #examples(2)
 

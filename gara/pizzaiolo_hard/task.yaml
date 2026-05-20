@@ -2,7 +2,7 @@
 # tm-allow-delete
 # Removing or changing the line above will prevent task-maker from touching this file again.
 name: pizzaiolo_hard
-title: Gattino al Toppo
+title: Ordina le ordinazioni (Versione Hard)
 score_type: GroupMin
 score_type_parameters:
 - - 0.0
@@ -26,7 +26,7 @@ output_only: false
 infile: ''
 outfile: ''
 difficulty: null
-syllabuslevel: 3
+syllabuslevel: 5
 num_processes: null
 user_io: std_io
 score_mode: max_subtask

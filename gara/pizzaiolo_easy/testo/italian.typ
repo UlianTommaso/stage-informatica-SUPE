@@ -18,8 +18,8 @@ Ogni ragazzo fa al massimo un'ordinazione e Tommaso raccoglie $N$ ordinazioni in
 Per ogni ordinazione, scrive su un bigliettino la lettera iniziale del gusto di pizza richiesto.
 
 #figure(
-  image("carte2.png", width: 60%),
-  caption: "I bigliettini delle pizze."
+  image("pizzaiolo.png", width: 60%),
+  caption: "Tommaso che cade dalle scale."
 )
 
 Purtroppo, mentre va in cucina, Tommaso inciampa e scompiglia tutte le comande che aveva in mano.

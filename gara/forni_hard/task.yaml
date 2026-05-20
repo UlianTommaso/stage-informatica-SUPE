@@ -22,7 +22,7 @@ output_only: false
 infile: ''
 outfile: ''
 difficulty: null
-syllabuslevel: 5
+syllabuslevel: 4
 num_processes: null
 user_io: std_io
 score_mode: max_subtask
