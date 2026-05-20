@@ -1,8 +1,8 @@
 import random
 
-for i in [6,7,8,9,14]:
+for i in [19]:
     path = str(i)+".in"
-    path2 = str(i+14)+".in"
+    path2 = str(i-7)+".in"
     with open(path, "r")  as f:
         with open(path2, "w") as ff:
             a = f.readline()
@@ -14,6 +14,8 @@ for i in [6,7,8,9,14]:
                 c = f.readline().split(" ")
                 if c[0] == "?":
                     x = int(c[1])
+                    if x == 42043:
+                        x = 42044
                     ff.write(c[0] + " " + str(x) + " " + str(x+random.randrange(100)) + "\n")
                 else:
                     ff.write(c[0] + " " + c[1] + " " + c[2] + "\n")
