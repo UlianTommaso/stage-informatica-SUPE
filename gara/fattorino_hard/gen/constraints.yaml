@@ -1,0 +1,10 @@
+MAXN: 10000
+
+subtask:
+  - {}
+  - {}                          # Samples
+  - {}                # N=1, M=1
+  - {}                      # N=1
+  - {}                # Small L             # Small N, M
+  - {}                         
+  - {}                          # No additional constraint

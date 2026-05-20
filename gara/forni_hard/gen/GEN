@@ -1,0 +1,31 @@
+#ST: 0
+#STNAME: samples
+#COPY: testo/forni_hard.input0.txt
+
+#ST: 30
+#STNAME: sub2
+#COPY: input_files/01.in
+#COPY: input_files/03.in
+#COPY: input_files/04.in
+#COPY: input_files/05.in
+#COPY: input_files/06.in
+
+#ST: 50
+#STNAME: sub3
+#COPY: input_files/07.in
+#COPY: input_files/08.in
+#COPY: input_files/09.in
+#COPY: input_files/10.in
+#COPY: input_files/11.in
+#COPY: input_files/12.in
+
+#ST: 20
+#STNAME: sub5
+#STDEP: *
+#COPY: input_files/13.in
+#COPY: input_files/14.in
+#COPY: input_files/15.in
+#COPY: input_files/16.in
+#COPY: input_files/17.in
+#COPY: input_files/18.in
+#COPY: input_files/19.in
