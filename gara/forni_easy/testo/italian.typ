@@ -10,22 +10,31 @@
 /* Statement content block */
 #statement[
 
-La **Pizzeria Apollonia** non è un locale qualunque: è un vero e proprio tempio della pizza, famoso in tutta la città per il suo cornicione perfettamente alveolato e la cottura sempre impeccabile. Al centro di questo miracolo culinario c'è Alessandro, il maestro fornaio. Ogni sera, durante il frenetico servizio, Alessandro si destreggia tra $N$ forni ad altissime prestazioni, ognuno con la propria temperatura in continua variazione.
+Alessandro lavora come pizzaiolo alla Pizzeria Appollonia. Per preparare le pizze per i ragazzi dello Stage, Alessandro ha a disposizione $N$ forni, le cui temperature cambiano continuamente.
 
-Il segreto di Alessandro per una pizza che cuocia alla perfezione, dorandosi al punto giusto senza mai bruciare, è il controllo assoluto del calore. Tuttavia, con centinaia di comande che arrivano in cucina, è umanamente impossibile tenere d'occhio i display di ogni singolo forno a mano. Per questo motivo, la pizzeria ha deciso di implementare un sistema informatico per monitorare in tempo reale i gradi dei forni e gestire i cambi di settaggio.
+#figure(
+  image("valerio.jpeg", width: 60%),
+  caption: "Alessandro intento a cucinare le pizze."
+)
 
-Il tuo compito è aiutare Alessandro scrivendo un programma che tenga traccia delle temperature. Quando Alessandro ha la pala in mano con una Margherita appena stesa, ha bisogno di sapere in un istante quanti forni si trovano esattamente a una particolare temperatura. Aiutalo a non far bruciare l'impasto!
+Gli $N$ forni sono numerati da $1$ a $N$ e inizialmente il forno $i$ ha una temperatura di $t_i$ gradi.
+
+Durante la giornata, per preparare le pizze, avvengono $Q$ *eventi* sui forni. Ogni evento è di uno dei seguenti tipi:
+- La temperatura del forno $k$ cambia a $x$ gradi. 
+- Alessandro si chiede quanti sono i forni che hanno uba temperatura di tra $x$ gradi, così da cucinare la pizza senza bruciarla.
+
+Dato che Alessandro è indaffarato a preparare le pizze, aiutalo rispondendo alle sue domande.
 
 #inputfile
 
-La prima riga di input contiene due interi $N$ e $Q$: il numero di forni gestiti da Alessandro e il numero di operazioni che avvengono durante la serata. I forni sono numerati da $1, 2, dots, N$.
+La prima riga di input contiene due interi $N$ e $Q$, rispettivamente il numero di forni gestiti da Alessandro e il numero di operazioni che avvengono durante la serata. I forni sono numerati da $1, 2, dots, N$.
 
 La riga successiva contiene $N$ interi $t_1, t_2, dots, t_N$: la temperatura iniziale di ogni forno.
 
 Successivamente, ci sono $Q$ righe che descrivono le operazioni. Ogni riga ha una delle seguenti forme:
 
-* **`! k x`**: Alessandro abbassa o alza la fiamma, impostando la temperatura del forno $k$ a $x$ gradi.
-* **`? x`**: Alessandro vuole sapere quanti forni hanno una temperatura attualmente pari esattamente a $x$ gradi.
+- *`! k x`*: Alessandro abbassa o alza la fiamma, impostando la temperatura del forno $k$ a $x$ gradi.
+- *`? x`*: Alessandro vuole sapere quanti forni hanno una temperatura attualmente pari esattamente a $x$ gradi.
 
 #note[
 Tra gli allegati a questo task troverai un template `forni_easy.*` con un esempio di implementazione.
